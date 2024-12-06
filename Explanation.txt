@@ -1,0 +1,68 @@
+
+This script is a **Streamlit-based Movie Recommender System** that provides personalized movie recommendations using cosine similarity 
+and displays movie posters fetched from the TMDb API. Below is a detailed explanation of the code:
+
+### Imports
+- **streamlit as st**: For creating the interactive web app.
+- **pickle**: To load pre-saved data objects (movie details and similarity matrix).
+- **pandas as pd**: For handling tabular data (movies data).
+- **requests**: For making HTTP requests to fetch movie poster details.
+
+### `fetch_poster(movie_id)` Function
+This function fetches the poster of a movie using its unique `movie_id` from the TMDb API.
+- **Input**: `movie_id` (a unique identifier for each movie in the TMDb database).
+- **Process**:
+  - Constructs a URL using the TMDb API key and `movie_id`.
+  - Sends a GET request to fetch movie details in JSON format.
+  - Extracts the `poster_path` and constructs the full URL for the poster image.
+- **Output**: Returns the poster URL or a placeholder if the poster is not available.
+
+### `recommend(movie)` Function
+This function generates movie recommendations and fetches their posters.
+- **Input**: `movie` (the title of the movie selected by the user).
+- **Process**:
+  1. Retrieves the index of the selected movie from the `movies` DataFrame.
+  2. Fetches the cosine similarity scores for the selected movie with all other movies.
+  3. Sorts the similarity scores in descending order and selects the top 5 most similar movies.
+  4. For each recommended movie:
+     - Fetches the movie title.
+     - Calls the `fetch_poster` function to get the poster URL.
+- **Output**: Returns two lists:
+  - `recommended_movies`: Titles of the recommended movies.
+  - `recommended_posters`: URLs of their posters.
+
+### Loading Data
+- **`movies_dict.pkl`**: A dictionary containing movie details like title, genres, and IDs, loaded as a DataFrame.
+- **`similarity.pkl`**: A precomputed similarity matrix (cosine similarity) loaded as a NumPy array.
+- The `movies` DataFrame is constructed from `movies_dict` for easy indexing.
+
+### Streamlit App
+1. **App Title**: Displays the title "Movie Recommender System".
+2. **Movie Selection**: A dropdown (`st.selectbox`) to select a movie from the list of available titles.
+3. **Recommendation Button**:
+   - On clicking the "Recommend" button, the `recommend` function is invoked.
+   - Displays 5 recommended movies along with their posters in a horizontal layout using `st.columns`.
+
+### Key Features
+- **Dynamic Poster Fetching**: Real-time fetching of movie posters from the TMDb API.
+- **Interactive UI**: Powered by Streamlit for an intuitive user experience.
+- **Efficient Recommendations**: Uses cosine similarity to find movies with the closest feature vectors.
+
+### How the Code Works
+1. User selects a movie from the dropdown.
+2. Clicks the "Recommend" button.
+3. The app fetches the top 5 similar movies and their posters.
+4. Results are displayed in a visually appealing layout.
+
+### Dependencies
+Ensure you have the following Python packages installed:
+- `streamlit`
+- `pandas`
+- `requests`
+
+Run the app with:
+```bash
+streamlit run app.py
+```
+
+This code effectively combines machine learning (similarity-based recommendations) with API integration to deliver an engaging user experience.
