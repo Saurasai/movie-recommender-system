@@ -39,9 +39,9 @@ This is a movie recommender web app built with **Streamlit**, **Python**, and **
     ```
 
 5. Run the Streamlit app:
-    ```bash
-    streamlit run app.py
-    ```
+    
+   URL : https://sourabh-kumar-singh-movie-recommendation.streamlit.app/
+   
 
 ## File Structure
 
