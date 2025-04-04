@@ -19,7 +19,7 @@ This is a movie recommender web app built with **Streamlit**, **Python**, and **
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/movie-recommender-streamlit.git
+    git clone https://github.com/Saurasai/movie-recommender-streamlit.git
     ```
 
 2. Navigate to the project directory:
